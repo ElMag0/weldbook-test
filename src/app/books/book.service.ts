@@ -1,7 +1,6 @@
-import {Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import { map } from 'rxjs/operators';
 import {Observable} from "rxjs";
-import {Environment, ENVIRONMENT} from "@app/core/environment";
 import {ApiService} from "@app/core/api";
 
 export interface Book {
