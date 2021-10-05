@@ -14,6 +14,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatOptionModule} from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {environment} from "../environments/environment";
+import {ENVIRONMENT} from "@app/core/environment";
 
 @NgModule({
   declarations: [AppComponent, MainComponent],
@@ -32,7 +34,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatIconModule,
     MatCheckboxModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ENVIRONMENT,
+      useValue: environment
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
