@@ -29,7 +29,7 @@ export interface GetBookRes {
 }
 
 @Injectable({providedIn: 'root'})
-export class BookService {
+export class BookApiService {
 
   constructor(
     private readonly api: ApiService

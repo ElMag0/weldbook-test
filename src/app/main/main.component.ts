@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { BookService, Book } from '@app/books';
+import { BookApiService, Book } from '@app/books';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -33,7 +33,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private readonly bookService: BookService,
+    private readonly bookService: BookApiService,
     private route: ActivatedRoute
   ) {}
 
