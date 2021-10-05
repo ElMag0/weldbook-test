@@ -1,0 +1,18 @@
+
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.card-header {
+  background: -webkit-linear-gradient(to right, #414141, #424242);
+  background: linear-gradient(to right, #616161, #181818);
+}
+
+.btn-search {
+  border-radius: 10%;
+}

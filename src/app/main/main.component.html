@@ -1,0 +1,119 @@
+<div class="card">
+  <div class="card-header card-header-warning">
+    <h4 class="card-title"></h4>
+
+    <mat-form-field class="search-filter">
+      <input
+        #filterInput
+        matInput
+        placeholder="Глобальный поиск"
+        [(ngModel)]="queryStr"
+      />
+      <button
+        *ngIf="filterInput.value.trim().length > 0"
+        (click)="queryStr = ''"
+        aria-label="Clear"
+        class="clear-icon size25 gray"
+        mat-button
+        mat-icon-button
+        matSuffix
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button
+      (click)="getBooks()"
+      class="btn-search"
+      mat-raised-button
+      color="success"
+      mat-button
+      mat-icon-button
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <!-- Поиск в результатах -->
+    <mat-form-field class="search-filter">
+      <input
+        #filterInput1
+        matInput
+        placeholder="Поиск по результатам"
+        [(ngModel)]="searchStr"
+      />
+      <button
+        *ngIf="filterInput1.value.trim().length > 0"
+        (click)="searchStr = ''"
+        aria-label="Clear"
+        class="clear-icon size25 gray"
+        mat-button
+        mat-icon-button
+        matSuffix
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Select an option</mat-label>
+      <mat-select  (valueChange)="getBooks($event)">
+        <mat-option [value]=""></mat-option>
+        <mat-option value="https://www.googleapis.com/books/v1/volumes"
+          >All</mat-option
+        >
+        <mat-option value="flowers&filter=free-ebooks">Цветы</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+  </div>
+
+  <!-- table -->
+
+  <div class="card-body table-responsive">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <!-- Position Column -->
+      <ng-container matColumnDef="select">
+        <th *matHeaderCellDef mat-header-cell></th>
+
+        <td *matCellDef="let element" mat-cell>
+          <mat-checkbox (change)="toggleFavorite(element)"> </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.volumeInfo.title }}
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Author</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.volumeInfo.authors }}
+        </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="pageCount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Pages</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.volumeInfo.pageCount }}
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="language">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Language</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.volumeInfo.language }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>
+
+<!-- table -->
