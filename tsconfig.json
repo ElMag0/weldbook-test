@@ -20,7 +20,12 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/core/environment": ["src/app/core/environment/index.ts"],
+      "@app/core/api": ["src/app/core/api/index.ts"],
+      "@app/books": ["src/app/books/index.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
