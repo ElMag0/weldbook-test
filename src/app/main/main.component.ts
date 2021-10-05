@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { ApiService, Book } from '../api.service';
+import { BookApiService, Book } from '@app/books';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort, Sort, MatSortable } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute, Params } from '@angular/router';
 
 export interface PeriodicElement {
@@ -32,11 +32,14 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private readonly bookService: BookApiService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     // this.route.params.subscribe((params: Params) => {
-    //   this.apiService.getBooks(this.defaultStr).subscribe((response: any) => {
+    //   this.bookService.getBooks(this.defaultStr).subscribe((response: any) => {
     //     this.books = response;
     //     this.dataSource.data = response
     //     let bookInStorage = JSON.parse(localStorage.getItem(this.books[0].volumeInfo.authors)!)
@@ -49,9 +52,9 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {}
 
-  getBooks() {
+  public getBooks() {
     this.route.params.subscribe((params: Params) => {
-      this.apiService.getBooks(this.queryStr).subscribe((response: any) => {
+      this.bookService.getBooks(this.queryStr).subscribe((response: any) => {
         this.dataSource.data = response;
 
         console.log(this.dataSource);
@@ -61,7 +64,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   arrStorage: any[] = [];
 
-  toggleFavorite(book: Book) {
+  public toggleFavorite(book: Book) {
     book.favorite = !book.favorite;
 
     if (book.favorite) {
